@@ -1,3 +1,5 @@
 <template>
-  teset
+  <div>
+    <BattleField />
+  </div>
 </template>
