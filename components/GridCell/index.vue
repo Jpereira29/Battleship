@@ -3,20 +3,23 @@
     :class="`d-flex align-center justify-center card ${
       !!positionDefault(index) || index == 0 ? 'pos-default' : ''
     }`"
-    width="50"
-    height="50"
+    width="40"
+    height="40"
   >
     <span>{{ positionDefault(index) }}</span>
   </v-card>
 </template>
 
 <script lang="ts" setup>
+import { Piece } from "@/models";
 const props = defineProps({
   index: {
     type: Number,
     required: true,
   },
 });
+
+const piece = ref<Piece>();
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -28,6 +31,10 @@ const positionDefault = (index: number) => {
     ? numbers[index / 11 - 1]
     : "";
 };
+
+onMounted(() => {
+  piece.value = new Piece(props.index);
+});
 </script>
 
 <style scoped>
