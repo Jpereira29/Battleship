@@ -24,6 +24,8 @@ const piece = ref<Piece>();
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
 
+const emit = defineEmits(["freePosition"]);
+
 const positionDefault = (index: number) => {
   return (index.toString().length == 1 && index != 0) || index == 10
     ? letters[index - 1]
@@ -34,6 +36,10 @@ const positionDefault = (index: number) => {
 
 onMounted(() => {
   piece.value = new Piece(props.index);
+
+  if (!positionDefault(props.index)) {
+    emit("freePosition", props.index);
+  }
 });
 </script>
 
