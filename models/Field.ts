@@ -1,4 +1,4 @@
-import { Boat } from '@/models';
+import { Boat } from "@/models";
 
 export class Field {
   id: number = 0;

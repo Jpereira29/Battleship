@@ -17,9 +17,17 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  boatId: {
+    type: String,
+    default: "",
+  },
+  fieldId: {
+    type: String,
+    default: "",
+  },
 });
 
-const piece = ref<Piece>();
+const piece = ref<Piece>(new Piece(props.index));
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -35,12 +43,39 @@ const positionDefault = (index: number) => {
 };
 
 onMounted(() => {
-  piece.value = new Piece(props.index);
-
   if (!positionDefault(props.index)) {
     emit("freePosition", props.index);
   }
+
+  overEffect();
 });
+
+watch(
+  () => document.getElementById(props.fieldId)?.getBoundingClientRect(),
+  () => {
+    overEffect();
+  }
+);
+
+const overEffect = () => {
+  const positionPiece = document
+    .getElementById(props.fieldId)
+    ?.getBoundingClientRect();
+  const positionBoat = document
+    .getElementById(props.boatId)
+    ?.getBoundingClientRect();
+
+  piece.value.isHovered = piece.value.isOverlapping(
+    positionPiece!,
+    positionBoat!
+  );
+
+  if (piece.value.isHovered) {
+    document.getElementById(props.fieldId)?.classList.add("covered");
+  } else {
+    document.getElementById(props.fieldId)?.classList.remove("covered");
+  }
+};
 </script>
 
 <style scoped>
@@ -63,5 +98,11 @@ onMounted(() => {
     border: 1px solid #23245b;
     cursor: default;
   }
+}
+
+.covered {
+  background: #959595 !important;
+  border: 1px solid #a44f21 !important;
+  cursor: default;
 }
 </style>
