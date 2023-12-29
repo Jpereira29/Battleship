@@ -12,6 +12,8 @@
 
 <script lang="ts" setup>
 import { Piece } from "@/models";
+import { useFieldStore } from "@/store";
+
 const props = defineProps({
   index: {
     type: Number,
@@ -26,6 +28,8 @@ const props = defineProps({
     default: "",
   },
 });
+
+const useField = useFieldStore();
 
 const piece = ref<Piece>(new Piece(props.index));
 
@@ -72,6 +76,7 @@ const overEffect = () => {
 
   if (piece.value.isHovered) {
     document.getElementById(props.fieldId)?.classList.add("covered");
+    useField.addPosition(props.index);
   } else {
     document.getElementById(props.fieldId)?.classList.remove("covered");
   }

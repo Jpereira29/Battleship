@@ -3,7 +3,13 @@
     color="red"
     :width="size"
     height="38"
-    :style="`margin-top: 1px; position: absolute; top: ${boat.positions.top}px`"
+    :style="`
+      margin-top: 1px;
+      margin-left: 3px;
+      position: absolute; 
+      top: ${boat.positions.top}px; 
+      left: ${boat.positions.left}px;
+    `"
   >
   </v-card>
 </template>

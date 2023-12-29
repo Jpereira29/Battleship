@@ -10,8 +10,8 @@ export class Boat {
   name: string;
   size: number;
   positions: Position = {
-    top: 40,
-    left: 40,
+    top: this.random() * 40,
+    left: this.random() * 40,
     // bottom: 50,
     // right: 40,
   };
@@ -20,4 +20,9 @@ export class Boat {
     this.name = name;
     this.size = size;
   }
+
+  random(): number {
+    return Math.floor(Math.random() * 6) + 1;
+  }
 }
+
