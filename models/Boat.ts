@@ -1,8 +1,8 @@
 type Position = {
   top: number;
   left: number;
-  bottom: number;
-  right: number;
+  // bottom: number;
+  // right: number;
 };
 
 export class Boat {
@@ -10,10 +10,10 @@ export class Boat {
   name: string;
   size: number;
   positions: Position = {
-    top: 30,
+    top: 40,
     left: 40,
-    bottom: 50,
-    right: 40,
+    // bottom: 50,
+    // right: 40,
   };
 
   constructor(name: string, size: number) {

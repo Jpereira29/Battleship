@@ -10,14 +10,14 @@
         @freePosition="field.setFreePosition($event)"
         :id="`position_` + i"
         :fieldId="`position_` + i"
-        boatId="boat_4"
+        :boatId="`boat_` + boatIndex"
       />
       <BoatNav
         v-for="(boat, i) in field.boats"
-        style="position: absolute; top: 80px"
         :id="`boat_` + i"
         :key="i"
         :boat="boat"
+        @vnodeMounted="boatIndex = i"
       />
     </v-row>
   </v-card>
@@ -36,6 +36,8 @@ field.value.boats = [
   new Boat("boat", 2),
   new Boat("boat", 2),
 ];
+
+const boatIndex = ref<number>(0);
 </script>
 
 <style scoped>

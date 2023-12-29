@@ -1,5 +1,10 @@
 <template>
-  <v-card color="red" :width="size" height="36" style="margin-top: 2px;">
+  <v-card
+    color="red"
+    :width="size"
+    height="38"
+    :style="`margin-top: 1px; position: absolute; top: ${boat.positions.top}px`"
+  >
   </v-card>
 </template>
 
@@ -14,7 +19,6 @@ const props = defineProps({
 });
 
 const size = computed(() => {
-  return props.boat.size * 40 + "px";
+  return props.boat.size * 39 + "px";
 });
-
 </script>
